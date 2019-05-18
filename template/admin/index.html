@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界-后台管理</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../css/houtai.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/columnManage.js"></script>
+</head>
+<body>
+	<% include components/head.html %>
+    <div class="main">
+    	<% include components/left.html %>
+	    <div class="right">
+	    	<a class="btn btn-info addparent" data-toggle="modal" data-target="#addColumnModal">添加顶级栏目</a>
+	    	<table class="table table-bordered">
+	    		<tbody>
+	    			<%for(var i=0;i< column_data.length;i++){%>
+	    		    <tr>
+	    		    	<th>
+	    		    		<i class="ico-i" id="<%=column_data[i].ID%>"></i>
+	    		    		<a class="ico-a" href="doArticle?parentId=<%=column_data[i].ID%>&page=1&act=group">
+	    		    			<%= column_data[i].name%>
+	    		    			[ID:<%= column_data[i].ID%>]
+	    		    		</a>
+	    		    		<ul class="manage-colmun-ul">
+	    		    			<li><a href="doArticle?parentId=<%=column_data[i].ID%>&page=1&act=group">内容</a></li>
+	    		    			<li><a class="addchild" id="<%=column_data[i].ID%>" data-toggle="modal" data-target="#addColumnModal">增加子类</a></li>
+	    		    			<li><a class="editParent" data-toggle="modal" data-target="#addColumnModal" id="<%=column_data[i].ID%>">更改</a></li>
+	    		    			<li><a class="remove-parent-column" id="<%=column_data[i].ID%>">删除</a></li>
+	    		    		</ul>
+                           <table class="table table-bordered child-column-table child-column-table-<%=column_data[i].ID%>" style="clear:both"><tbody>
+                           	<%for(var j=0;j< column_data[i].child_column.length;j++){%>
+                                <tr><th>
+	                           	    	<a href="doArticle?categoryId=<%= column_data[i].child_column[j].ID%>&page=1&act=group">
+	                           	    		<%=column_data[i].child_column[j].name%>
+	                           	    		[ID:<%= column_data[i].child_column[j].ID%>]
+	                           	    	</a>
+	                           	    	<ul class="manage-colmun-ul">
+				    		    			<li><a href="doArticle?categoryId=<%= column_data[i].child_column[j].ID%>&page=1&act=group">内容</a></li>
+				    		    			<li><a class="editChild" data-toggle="modal" data-target="#addColumnModal" id="<%= column_data[i].child_column[j].ID%>">更改</a></li>
+				    		    			<li><a class="remove-child-column" id="<%= column_data[i].child_column[j].ID%>">删除</a></li>
+	    		    		            </ul>
+	                           	    </th></tr>
+                            <%}%>     
+                           </tbody></table>
+	    		    	</th>	
+	    		    </tr>
+	    		   <%}%>
+	    	    </tbody>
+	    	</table>
+	    </div>
+    </div>
+    <!--增加栏目模态框-->
+    <div class="addparent-modal-panel">
+    	<div class="modal fade columnModal" id="addColumnModal" role="dialog" aria-labelledby="columnLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="columnLabel">添加顶级栏目</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+							     <label for="column-name" class="col-sm-2 control-label"><i style="color:red">*</i>名称：</label>
+							     <div class="col-sm-6">
+							       <input type="text" class="form-control" id="column-name">
+							     </div>
+							</div>
+							<div class="form-group addchildformgroup">
+							     <label for="column-href" class="col-sm-2 control-label"><i style="color:red">*</i>链接：</label>
+							     <div class="col-sm-6">
+							       <input type="text" class="form-control" id="column-href">
+							     </div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group btnbox">
+					   	    <button type="submit" class="btn btn-primary sure-addcolumn" style="margin-right:20px">确定</button>
+					      	<button type="button" class="btn btn-default closebtn" data-dismiss="modal">关闭</button>  
+					    </div>
+					</div>
+						   
+				</div>
+			</div>
+        </div>
+    </div>
+</body>
+<script>
+	$(".left li").eq(0).addClass("active")
+</script>
+</html>

@@ -1,0 +1,61 @@
+.Ltd{padding-left:15px;}
+ .Ltd p
+ {
+	text-align: justify;
+    color: #333;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 0;
+ }
+ .redLine2{width:746px;}
+.Rtd
+{
+	width:292px;
+	padding-left:15px;
+	padding-right:15px;
+}
+.lsBox
+{
+	padding:15px; 
+	padding-top:50px;
+	padding-bottom:0px;
+}
+.myh4
+{
+	color:#600;
+	float:left; 
+	margin-top:30px;
+	width:100%;
+	font-weight:bold;
+}
+.myh5
+{
+	float:left;
+	font-weight:bold;
+	margin-top:20px;
+	width:100%;
+	color:#600;
+}
+.ls
+{
+	font-size: 16px;
+    margin-bottom: 5px;
+    width: 50%;
+    float: left;
+}
+.ls a
+{
+    color: #333;
+    text-decoration: none;
+}
+.ls a:hover{cursor:pointer;color:#337ab7;}
+.Ltd .newp
+{
+	font-size:16px;
+	margin-top:25px;
+	color:#333;
+	display:block;
+	float: left;
+	padding-left:15px;
+	padding-right:15px;
+}

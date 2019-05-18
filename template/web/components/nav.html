@@ -1,0 +1,47 @@
+<!-- 欢迎开始 -->
+  <div class="welcome">
+    <div class="welcomeIn">
+	  <span>欢迎您访问中国信息界网！</span>
+	  <span style=" float:right;margin-right:15px;">
+	  <div id="time"></div>
+	  </span>
+	</div>
+  </div>
+<!-- 欢迎结束 -->
+<!-- 顶部logo开始 -->
+  <div id="top">
+    <div class="topIn">
+	  <img class="logo" src="../web/img/logo.png" />
+	  <img class="topBg" src="../web/img/b.jpg" />
+	  <div class="topText">国家发改委主管 中国信息协会主办
+	</div>
+  </div>
+  </div>
+<!-- 顶部logo结束 -->
+<!-- 导航栏开始 -->
+  <div id="menu">
+     <div class="menuIn">
+	    <div class="leftNav">
+		     <ul class="pul">
+		     	<%for(var i=0;i< 8;i++){%>
+		     	    <li>
+		     	    	<a href="<%=indexData.column_data[i].href%>?act=group&page=1&parentId=<%=indexData.column_data[i].ID%>"><span><%=indexData.column_data[i].name%></span></a>
+		     	    	<ul class="cul">
+		     	        <%for(var j=0;j< indexData.column_data[i].child_column.length;j++){%>
+                                <li><a href="<%=indexData.column_data[i].href%>?act=group&page=1&categoryId=<%=indexData.column_data[i].child_column[j].ID%>"><%=indexData.column_data[i].child_column[j].name%></a></li>
+		     	    	<%}%>
+		     	    	</ul>
+		     	    	
+		     	    </li>
+		     	<%}%>
+		    </ul>	   
+		</div>
+		<div id="search">
+		  <div class="searchLeftBorder"></div>
+		  <form>
+		    <input type="text" placeholder="热门搜索 : 智慧城市 信息惠民" class="search-keyword">
+			<a class="searchBtn"><img src="../web/img/search.png" /></a>
+		  </form>
+		</div>
+	 </div>
+  </div>

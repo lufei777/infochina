@@ -1,0 +1,105 @@
+ <td class="Rtd" valign="top">
+		<!-- 中国信息界开始 -->
+		 <div style="margin-top:5px;">
+		    <div class="bar">
+			   <div class="halfbar"></div>
+			</div>
+			<div class="leftbar"></div>
+			<a class="righta">《中国信息界》</a>
+			<div class="clearfloat">
+			<div class="bannerOut">
+			  <div class="bannerIn">
+			  	<%for(var i=0;i< 5;i++){%>
+			  	    <a><img src="/upload/<%=indexData.youcelb_data[i].pic_url%>"></a>
+			  	<%}%>
+			  	<a href=""><img src="/upload/<%=indexData.youcelb_data[0].pic_url%>" alt=""></a>
+			  </div>
+			  <div class="banner_bg"></div>
+			</div>
+			</div>
+		 </div>
+		<!-- 中国信息界结束 -->
+		<!-- 理事会开始 -->
+		 <div style="margin-top:11px;">
+		    <div class="bar">
+			   <div class="halfbar"></div>
+			</div>
+			<div class="leftbar"></div>
+			<a class="righta">理事会</a>
+			<a><img class="img-thumbnail rightImg" src="../web/img/r1.jpg"></a>
+			<p class="newp rightp" sytle="height:50px;"><a href="/www.infochina.net/lishihui">
+				<%=indexData.rightlsh_data.shortContent%>
+				
+			</a></p>
+			<div class="rightmore"><a href="/www.infochina.net/lishihui">【详情】</a></div>
+		 </div>
+		<!-- 理事会结束 -->
+		<!-- 品牌活动开始 -->
+		 <div>
+		    <div class="bar">
+			   <div class="halfbar"></div>
+			</div>
+			<div class="leftbar"></div>
+			<a class="righta">品牌活动</a>
+			<a href="/www.infochina.net/pinpaihuodong?act=group&page=1&categoryId=16"><img src="../web/img/r2.jpg" class="img-thumbnail rightpinpaiImg"></a>
+			<a href="/www.infochina.net/pinpaihuodong?act=group&page=1&categoryId=17"><img src="../web/img/r3.jpg" class="img-thumbnail rightpinpaiImg"></a>
+			<a href="/www.infochina.net/pinpaihuodong?act=group&page=1&categoryId=19"><img src="../web/img/r4.jpg" class="img-thumbnail rightpinpaiImg"></a>
+			<a href="/www.infochina.net/pinpaihuodong?act=group&page=1&categoryId=18"><img src="../web/img/r5.jpg" class="img-thumbnail rightpinpaiImg"></a>
+			<div class="rightmore" style="margin-top:5px;"><a href="/www.infochina.net/pinpaihuodong">【更多】</a></div>
+		 </div>
+		<!-- 品牌活动结束 -->
+		<!-- 合作单位开始 -->
+		<div class="hzxgBox">
+		  <div class="bar">
+			   <div class="halfbar"></div>
+		  </div>
+		  <div class="leftbar"></div>
+		  <a class="righta" style="margin-bottom:5px;">合作单位</a>
+		  <%for(var i=0,j=0;i< indexData.hzxg_data.length;i++){%>
+		     <%if(indexData.hzxg_data[i].category_ID==1 && j<6){%>
+                <%j++;%>
+		       <a class="dwa" href="<%=indexData.hzxg_data[i].httpurl%>"><%=indexData.hzxg_data[i].name%></a>
+		  <%}}%>
+		</div>
+		<!-- 合作单位结束 -->
+		<!-- 合作企业开始 -->
+		 <div style="margin-top:10px;overflow:hidden;">
+		    <div class="bar">
+			   <div class="halfbar"></div>
+			</div>
+			<div class="leftbar"></div>
+			<a class="righta">合作企业</a>
+			<div style=" float:left; width:100%; height:1px;"></div>
+			<div class="hezuoqiyeImgbox">
+			<%for(var i=0,j=0;i< indexData.hzxg_data.length;i++){%>
+			    <%if(indexData.hzxg_data[i].category_ID==2 && j<8){%>
+			       <%j++%>
+			       <a class="hezuoa" href="<%=indexData.hzxg_data[i].httpurl%>">
+			       	  <img src="/upload/<%=indexData.hzxg_data[i].pic_url%>" class="img-thumbnail">
+			       </a>
+			    <%}%>
+			<%}%>
+			</div>
+		 </div>
+		<!-- 合作企业结束 -->
+		<!-- 合作媒体开始 -->
+		 <div style="overflow:hidden">
+		 <div class="bar">
+			   <div class="halfbar"></div>
+			</div>
+			<div class="leftbar"></div>
+			<a class="righta">合作媒体</a>
+			<div style=" float:left; width:100%; height:1px;"></div>
+			<div class="hezuoqiyeImgbox">
+			  <%for(var i=0,j=0;i< indexData.hzxg_data.length;i++){%>
+			     <%if(indexData.hzxg_data[i].category_ID==3 && j<4){%>
+			          <a class="hezuoa" href="<%=indexData.hzxg_data[i].httpurl%>">
+			          	<img src="/upload/<%=indexData.hzxg_data[i].pic_url%>" class="img-thumbnail">
+			          </a>
+			     <%}%>
+			  <%}%>
+			</div>
+		 </div>
+		<!-- 合作媒体结束 -->
+		</td>	
+        <!--右侧部分结束  -->

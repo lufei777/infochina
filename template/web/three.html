@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界网</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../css/houtai.css">
+	<link rel="stylesheet" href="../web/css/global.css">
+	<link rel="stylesheet" href="../web/css/1.css">
+	<link rel="stylesheet" href="../web/css/2.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../web/js/default.js"></script>
+	<script src="../js/pageManage.js"></script>
+	<script src="../web/js/search.js"></script>
+	<link href="../web/img/logo.ico" rel="shortcut icon"> 
+<style>
+.Ltd{padding-left:15px;}
+.mybreadcrumb{margin-bottom:0px;}
+#con1_1{overflow:hidden;}
+.product_list
+{
+	padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    float: left;
+    width: 240px;
+    height: 365px;
+    margin-top: 10px;
+    margin-right: 8px;
+    min-height: 359px;
+    overflow: hidden;
+}
+.product_list h5
+{
+	line-height:20px;
+}
+.product_list .newp{width:215px;}
+.examImg
+{	
+	width:215px;
+}
+</style>
+</head>
+<body>
+  <!-- 导航栏开始 -->
+   <% include components/nav.html%>
+ <!-- 导航栏结束 -->
+ <div class="redLine"></div>
+ <!-- 主体部分开始 -->
+   <table>
+     <tbody><tr>
+	   <!-- 左侧部分开始 -->
+		<td class="Ltd" valign="top">
+		  <!-- 面包屑 -->
+		   <ol class="breadcrumb mybreadcrumb">
+		    <li><a id="3" href="/www.infochina.net/youxiuanli?page=1&act=group&parentId=3">全部</a></li>
+			<%for(var i=0;i< indexData.allChildCol.length;i++){%>
+		    <li><a id="<%=indexData.allChildCol[i].ID%>" href="/www.infochina.net/youxiuanli?page=1&act=group&categoryId=<%=indexData.allChildCol[i].ID%>">&nbsp;<%=indexData.allChildCol[i].name%></a></li>
+		     <%}%>
+		   </ol>
+		   <div id="con1_1">
+			   	<%for(var i=0;i< indexData.yxal_data.length;i++){%>
+			   	<div class="product_list">
+				    <a><img class="examImg" src="/upload/<%=indexData.yxal_data[i].pic_url%>"></a>
+				    <h5><a href="/www.infochina.net/news?categoryId=<%=indexData.yxal_data[i].category_ID%>&id=<%=indexData.yxal_data[i].ID%>">
+				    	<%=indexData.yxal_data[i].title%></a></h5>
+				    <p class="newp"><a href="/www.infochina.net/news?categoryId=<%=indexData.yxal_data[i].category_ID%>&id=<%=indexData.yxal_data[i].ID%>"><%=indexData.yxal_data[i].shortContent%>
+				    </a></p>
+			     </div>
+			   	<%}%>		    
+		   </div>
+
+            <nav aria-label="Page navigation">
+			  <ul class="pagination" style="float: right;margin:20px 20px;">
+			  	<li><a class="firstPage">首页</a></li>
+			    <li id="lastgroup">
+			      <a aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			     <%for(var i=0;i< indexData.pageArr.length;i++){%>
+			       <li id="<%=indexData.pageArr[i]%>" class="clickpage"><a class="pagea current<%=i%>"><%=indexData.pageArr[i]%></a></li>
+			     <%}%> 
+			    <li id="nextgroup">
+			      <a aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			    <li><a class="lastPage" id="<%=indexData.totalPages%>">末页</a></li>
+			  </ul>
+            </nav>
+             <p class="totalpage">第<span>
+             	<%if(indexData.totalPages==0){%>
+             	      0 /
+             	<%}else{%>
+             	   <%=indexData.currentPage%> /
+             	<%}%><i><%=indexData.totalPages%></i></span>页</p>
+            <p  class="totalcount">共<span><%=indexData.totalCount%></span>条记录</p>
+		</td>
+		<!-- 左侧部分结束 -->
+		<!-- 右侧部分开始 -->
+          <% include components/right.html%>
+        <!--右侧部分结束  -->
+	</tr></tbody>
+   </table>
+ <!-- 主体部分结束 -->
+ <!-- 底部开始 -->
+   <%include components/footer.html%>
+ <!-- 底部结束 -->
+ 
+<script>
+  $(".cul").mouseleave(function(){
+    $(this).parent().children("a").removeClass("current");
+	$(".pul>li").eq(2).children("a").addClass("current");
+ })
+ $(".pul>li>a").removeClass("current")
+ $(".pul>li:eq(2) a").addClass("current")
+
+ var $li=$(".mybreadcrumb li")
+ var categoryId=window.location.search.split("&")[2].split("=")[1];
+ $li=$(".mybreadcrumb li")
+ for(var i=0;i<$li.length;i++){
+ 	if($li.eq(i).find("a").attr("id")==categoryId){
+          $li.eq(i).find("a").addClass("currentbreada")
+ 	}
+ }
+</script>
+</body>
+</html>

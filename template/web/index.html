@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界网</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../web/css/global.css">
+	<link rel="stylesheet" href="../web/css/1.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../web/js/default.js"></script>
+	<script src="../web/js/index.js"></script>
+	<script src="../web/js/search.js"></script>
+	<link href="../web/img/logo.ico" rel="shortcut icon"> 
+</head>
+<body>
+ <!--导航栏开始-->
+    <% include components/nav.html %>  
+ <!-- 导航栏结束 -->
+ <div class="redLine"></div>
+ <!-- 主体部分开始 -->
+   <table>
+     <tbody><tr>
+	   <!-- 左侧部分开始 -->
+		<td class="Ltd" valign="top">
+		   <!-- 轮播开始 -->
+		  <div class="picOut" >
+            <div class="picIn">
+              <%for(var i=0;i< indexData.sybanner_data.length;i++){%>
+               <div class="item">
+			    <a href="/www.infochina.net/news?categoryId=<%=indexData.sybanner_data[i].category_ID%>&id=<%=indexData.sybanner_data[i].ID%>">
+			    	<img src="/upload/<%=indexData.sybanner_data[i].pic_url%>"></a>
+				<a><div class="imgText"><%=indexData.sybanner_data[i].title%></div></a>
+			   </div>
+              <%}%>
+              <div class="item">
+			    <a href="/www.infochina.net/news?categoryId=<%=indexData.sybanner_data[0].category_ID%>&id=<%=indexData.sybanner_data[0].ID%>">
+			    	<img src="/upload/<%=indexData.sybanner_data[0].pic_url%>"></a>
+				<a><div class="imgText"><%=indexData.sybanner_data[0].title%></div></a>
+			   </div>
+			</div>
+			
+			<ul class="carousel-indicators">
+		    <li class="active"></li>
+			<li></li>
+			<li ></li>
+			<li ></li>
+			<li ></li>
+		  </ul>
+		  <a class="carousel-control left Lbtn">‹</a>
+		  <a class="carousel-control right Rbtn">›</a> 
+		  </div>
+		  <!-- 轮播结束 -->
+		  <!-- 最新资讯开始 -->
+		  <div class="new" style="margin-top:10px;">最新资讯</div>
+		  <div class="more" style="margin-top:15px;"><a href="/www.infochina.net/zhihuizixun?page=1&act=group&parentId=2">【更多】</a></div>
+		  <div class="redLine2"></div>
+		  
+		  <ul style="width:764px;" class="zhzx-ul">
+		  	<%for(var i=0;i< indexData.zhzx_data.length;i++){%>
+		  	   <li><table class="table"><tbody><tr>
+			  	   <td style="padding-left:0px;"  class="newsimage"><a>
+			  	   	    <img class="img-thumbnail" src="/upload/<%=indexData.zhzx_data[i].pic_url%>">
+			  	   	</a></td>
+				   <td style="padding-right:0px;">
+				   	<h5>
+				   		<a href="/www.infochina.net/news?categoryId=<%=indexData.zhzx_data[i].category_ID%>&id=<%=indexData.zhzx_data[i].ID%>">
+				   			<%=indexData.zhzx_data[i].title%>   				
+				   		</a>
+				   		<span class="label label-primary"><%=indexData.zhzx_data[i].category%></span>
+				   	</h5>
+			   		<img src="../web/img/author.png" />
+			   		<span class="text-danger author"><%=indexData.zhzx_data[i].author%></span>
+					<span class="text-danger" style="font-weight: normal"><%=indexData.zhzx_data[i].publish_time%></span>
+					<p class="newp">
+						<a href="/www.infochina.net/news?categoryId=<%=indexData.zhzx_data[i].category_ID%>&id=<%=indexData.zhzx_data[i].ID%>">
+						<%=indexData.zhzx_data[i].shortContent%>
+						</a></p>			   
+				   </td>
+		  	   </tr></tbody></table></li>
+		  	<%}%>
+		  </ul>
+		  <div class="adv">
+		    <a><img src="../web/img/z6.jpg"></a>
+          </div>		  
+		 
+		  <!-- 最新资讯结束 -->
+		  <!-- 优秀案例开始 -->
+		  <div class="new" style="margin-top:30px">优秀案例</div>
+		  <div class="more" style="margin-top:35px;"><a href="/www.infochina.net/youxiuanli?page=1%act=group&parentId=3">【更多】</a></div>
+		  <div class="redLine2"></div>
+		  <%for(var i=0;i< indexData.yxal_data.length;i++){%>
+		    <div class="example"  style="margin-left:5%;">
+		    	<a><img class="img-thumbnail examImg" src="/upload/<%=indexData.yxal_data[i].pic_url%>"></a>
+		    	<h5><a href="/www.infochina.net/news?categoryId=<%=indexData.yxal_data[i].category_ID%>&id=<%=indexData.yxal_data[i].ID%>">
+		    		<%=indexData.yxal_data[i].title%></a></h5>
+		    	<p class="newp"><a href="/www.infochina.net/news?categoryId=<%=indexData.yxal_data[i].category_ID%>&id=<%=indexData.yxal_data[i].ID%>">
+		    		<%=indexData.yxal_data[i].shortContent%></a></p>
+		    </div>
+		  <%}%>
+		  <div class="adv2">
+		    <a><img src="../web/img/y7.jpg"></a>
+		  </div>
+		  <!-- 优秀案例结束 -->
+		  <!-- 理事动态开始 -->
+		  <div class="new" style="margin-top:35px">理事动态</div>
+		  <div class="more" style="margin-top:35px;"><a href="/www.infochina.net/pinpaihuodong?page=1&act=group&parentId=4">【更多】</a></div>
+		  <div class="redLine2"></div>
+		  <%for(var i=0;i< indexData.lsdt_data.length;i++){%>
+		    <div class="example"  style="margin-left:5%;">
+		    	<a><img class="img-thumbnail examImg" src="/upload/<%=indexData.lsdt_data[i].pic_url%>"></a>
+		    	<h5><a href="/www.infochina.net/news?categoryId=<%=indexData.lsdt_data[i].category_ID%>&id=<%=indexData.lsdt_data[i].ID%>">
+		    		<%=indexData.lsdt_data[i].title%></a></h5>
+		    	<p class="newp"><a href="/www.infochina.net/news?categoryId=<%=indexData.lsdt_data[i].category_ID%>&id=<%=indexData.lsdt_data[i].ID%>">
+		    		<%=indexData.lsdt_data[i].shortContent%></a></p>
+		    </div>
+		  <%}%>
+		  <!-- 理事动态结束 -->
+		</td>
+		<!-- 左侧部分结束 -->
+		<!-- 右侧部分开始 -->
+		   <% include components/right.html %>  
+        <!--右侧部分结束-->
+	</tr></tbody>
+   </table>
+ <!-- 主体部分结束 -->
+ <!-- 底部开始 -->
+     <% include components/footer.html%>
+ <!-- 底部结束 -->
+ 
+ <!-- 三个定位开始 -->
+    <div class="pos1" style="left:15px;"><a>
+	 <%for(var i=0,j=0;i< indexData.hzxg_data.length;i++){%>
+	     <%if(indexData.hzxg_data[i].category_ID==5 &&indexData.hzxg_data[i].name=="浮动广告" && j<1){%>
+	          <img src="/upload/<%=indexData.hzxg_data[i].pic_url%>" class="img-thumbnail">
+	     <%}%>
+	  <%}%>
+	  </a>
+	  <a style="float:right"><img src="../web/img/close.png" class="closeImg"></a>
+	</div>
+	<div class="pos1" style="right:15px;">
+	  <a><img src="../web/img/pos1.jpg" class="img-thumbnail" style="width:130px;"></a>
+	  <a style="float:right"><img src="../web/img/close.png" class="closeImg"></a>
+	</div>
+	<div class="pos2">
+	  <a class="leftbar" style="margin-left:18px;"></a>
+	  <div class="righta" style="width:132px">请您关注
+	   <a style="float:right"><img src="../web/img/close.png" class="close2"></a>
+	  </div>
+	  <%for(var i=0,j=0;i< indexData.hzxg_data.length;i++){%>
+	     <%if(indexData.hzxg_data[i].category_ID==5 &&indexData.hzxg_data[i].name=="中国信息界二维码" && j<1){%>
+	          <img src="/upload/<%=indexData.hzxg_data[i].pic_url%>" class="img-thumbnail" style="width:90%;margin-left:10%;">
+	     <%}%>
+	  <%}%>
+	</div>
+ <!-- 三个定位结束 -->
+<script>
+	window.indexData= <%- JSON.stringify(indexData) %>;
+	$(".pul>li>a").removeClass("current")
+	$(".pul>li:eq(0) a").addClass("current")
+	
+	$(".cul").hover(function(){
+	    $(this).parent().children("a").addClass("current");
+	 },function(){
+	    $(this).parent().children("a").removeClass("current");
+	})
+</script>
+</body>
+</html>

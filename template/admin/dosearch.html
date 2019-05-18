@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界-后台管理</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../css/houtai.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/isChecked.js"></script>
+	<script src="../js/dosearch.js"></script>
+	<style>
+		.table>tbody>tr>th{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<% include components/head.html %>
+    <div class="main">
+    	<% include components/left.html %>
+	    <div class="right">	
+	    	<span class="searchspan" style="font-size: 14px;"></span>
+	    	<%if(article_data.classId==2){%>
+	    	<a href="#" class="btn btn-info mulRestore" style="margin:5px 5px">批量还原</a>
+	    	<%}%>
+	    	<a href="#" class="btn btn-danger mulDelArticle" style="margin:5px 5px">批量删除</a>
+	    	<a  class="btn btn-info toback" style="float: right;margin:5px 5px">返回</a>
+	    	<%if(article_data.classId=="0"){%>
+	    	<table class="table table-bordered" style="clear: both">
+	    		<thead>
+	    			<th><input type="checkbox"></th>
+	    			<th>图片</th>
+	    			<th>标题</th>
+	    			<th>类目</th>
+	    			<th>发布人</th>
+	    			<th>发布时间</th>
+	    			<th>操作</th>
+	    		</thead>
+	    		<%if(article_data.items.length==0){%>
+	    		    <tbody><tr><th colspan="7"><h4 style="text-align: center">暂无数据...</h4></th></tr></tbody>
+	    		<%}else{%>
+		    		<tbody>
+		    		  <%for(var i=0;i< article_data.items.length;i++){%>
+		    		     <tr>
+		    		     	<th><input type="checkbox" id="<%=article_data.items[i].ID%>"></th>
+		    		     	<th>
+		    		     		<img src="/upload/<%=article_data.items[i].pic_url%>" style="width:80px;height: 60px;">
+		    		     	</th>
+		    		     	<th><%=article_data.items[i].title%></th>
+		    		     	<th><%=article_data.items[i].category%>
+		    		     		<br>
+		    		     		[ID:<%=article_data.items[i].ID%>]
+		    		     	</th>
+		    		     	<th><%=article_data.items[i].publisher%></th>
+		    		     	<th><%=article_data.items[i].publish_time%></th>
+		    		     	<th>
+		    		     		<a href="addArticle?class=0&act=mod&id=<%=article_data.items[i].ID%>">修改</a>
+		    		     		<a class="delArticle" id="<%=article_data.items[i].ID%>">删除</a>
+		    		     	</th>
+		    		     </tr>
+		    		  <%}%>
+		    		</tbody>
+	    		<%}%>
+	    	</table>
+	    	<%}else if(article_data.classId=="1"){%>
+	    	<table class="table table-bordered" style="clear: both">
+	    		<thead>
+	    			<th><input type="checkbox"></th>
+	    			<th>ID</th>
+	    			<th>图片</th>
+	    			<th>标题</th>
+	    			<th>类目</th>
+	    			<th>网址</th>
+	    			<th>操作</th>
+	    		</thead>
+	    		<%if(article_data.length==0){%>
+	    		    <tbody><tr><th colspan="7"><h4 style="text-align: center">暂无数据...</h4></th></tr></tbody>
+	    		<%}else{%>
+		    		<tbody>
+		    		  <%for(var i=0;i< article_data.items.length;i++){%>
+		    		     <tr>
+		    		     	<th><input type="checkbox" id="<%=article_data.items[i].ID%>"></th>
+		    		     	<th><%=article_data.items[i].ID%></th>
+		    		     	<th>
+		                        <%if(article_data.items[i].pic_url && article_data.items[i].pic_url!="null"){%>
+		    		     		<img src="/upload/<%=article_data.items[i].pic_url%>" style="width:60px;height: 40px;">	 
+		    		 		   <%}else{%>
+		    		 		        暂无
+		    		 		   <%}%>  		
+		    		     	</th>
+		    		     	<th><%=article_data.items[i].name%></th>
+		    		     	<th><%=article_data.items[i].category%></th>
+		    		     	<th>
+	    		                 <%if(article_data.items[i].httpurl && article_data.items[i].httpurl!='undefined'){%>
+	    		     		     <%=article_data.items[i].httpurl%>
+	    		     		     <%}else{%>
+	    		     		       暂无
+	    		     		     <%}%>
+		    		     	</th>
+		    		     	<th>
+		    		     		<a href="addArticle?class=1&act=mod&id=<%=article_data.items[i].ID%>">修改</a>
+		    		     		<a class="delcooperate" id="<%=article_data.items[i].ID%>">删除</a>
+		    		     	</th>
+		    		     </tr>
+		    		  <%}%>
+		    		</tbody>
+	    		<%}%>
+	    	</table>
+	    	<%}else if(article_data.classId=="2"){%>
+	    	<table class="table table-bordered" style="clear:both">
+	    		<thead>
+	    			<th><input type="checkbox"></th>
+	    			<th>ID</th>
+	    			<th>标题</th>
+	    			<th>类目</th>
+	    			<th>操作</th>
+	    		</thead>
+	    			<%if(article_data.items.length==0){%>
+	    		    <tbody><tr><th colspan="7"><h4 style="text-align: center">暂无数据...</h4></th></tr></tbody>
+	    		    <%}else{%>
+		    		<tbody>
+		    		  <%for(var i=0;i< article_data.items.length;i++){%>
+		    		     <tr>
+		    		     	<th><input type="checkbox" id="<%=article_data.items[i].classId%>-<%=article_data.items[i].ID%>"></th>
+		    		     	<th><%=article_data.items[i].ID%></th>
+		    		     	<th><a href="addArticle?act=recycle&class=<%=article_data.items[i].classId%>&id=<%=article_data.items[i].ID%>"><%=article_data.items[i].title%><%=article_data.items[i].name%></a></th>
+		    		     	<th><%=article_data.items[i].category%></th>
+		    		     	<th>
+		    		     		<a class="restore" id="<%=article_data.items[i].classId%>-<%=article_data.items[i].ID%>">还原</a>
+		    		     		<a class="delrecycle" id="<%=article_data.items[i].classId%>-<%=article_data.items[i].ID%>">删除</a>
+		    		     	</th>
+		    		     </tr>
+		    		  <%}%>
+		    		</tbody>
+	    		<%}%>
+	    	</table>
+
+	    	<%}%>    	
+	    	<nav aria-label="Page navigation">
+			  <ul class="pagination" style="float: right;margin:20px 20px;">
+			  	<li><a class="firstPage">首页</a></li>
+			    <li id="lastgroup">
+			      <a aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			     <%for(var i=0;i< article_data.pageArr.length;i++){%>
+			       <li id="<%=article_data.pageArr[i]%>" class="clickpage"><a class="pagea current<%=i%>"><%=article_data.pageArr[i]%></a></li>
+			     <%}%> 
+			    <li id="nextgroup">
+			      <a aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			    <li><a class="lastPage" id="<%=article_data.totalPages%>">末页</a></li>
+			  </ul>
+            </nav>
+             <p class="totalpage">第<span>
+             	<%if(article_data.totalPages==0){%>
+             	      0 /
+             	<%}else{%>
+             	   <%=article_data.currentPage%> /
+             	<%}%><i><%=article_data.totalPages%></i></span>页</p>
+            <p  class="totalcount">共<span><%=article_data.totalCount%></span>条记录</p>
+	    </div>
+    </div>
+    <script>
+    	window.article_data= <%- JSON.stringify(article_data) %>;
+    	if(article_data.classId=="0"){
+    		$(".left li").eq(0).addClass("active")
+    	}else if(article_data.classId=="1"){
+            $(".left li").eq(1).addClass("active")
+    	}else if(article_data.classId=="2"){
+    		 $(".left li").eq(2).addClass("active")
+    	}
+    	
+    </script>
+</body>
+</html>

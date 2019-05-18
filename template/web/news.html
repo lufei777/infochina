@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界网</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../web/css/global.css">
+	<link rel="stylesheet" href="../web/css/1.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../web/js/default.js"></script>
+	<script src="../web/js/index.js"></script>
+	<script src="../web/js/search.js"></script>
+	<link href="../web/img/logo.ico" rel="shortcut icon"> 
+ <style>
+ .Rtd
+ {
+	width:292px;
+	padding-left:15px;
+	padding-right:15px;
+ }
+ .position
+ {
+	font-size:16px;
+	margin-top:10px;
+	letter-spacing:1px;
+ }
+ .position a:hover
+ {
+    text-decoration:none;
+	cursor:pointer;
+}
+ .overline
+ {
+	width:100%;
+	height:1px;
+	background-color:#666;
+	margin-top:15px;
+ }
+ .newsspan
+ {
+	margin-right:20px;
+	font-size:16px;
+ }
+ .overp
+ {
+	font-size:16px;
+	line-height:24px;
+	margin-top:15px;
+ }
+ .overp2{margin-top:20px;}
+ .span1
+ {
+	color: rgb(51, 51, 51);
+	font-size: 16px; 
+	line-height: 30px;
+	text-align: justify;
+	text-indent: 2em;
+	white-space: pre-wrap;
+ }
+ .span2
+ {
+    font-weight:700;
+	color:rgb(0,0,255);
+ }
+ </style>
+</head>
+<body>
+<!-- 导航栏开始 -->
+    <% include components/nav.html%>
+ <!-- 导航栏结束 -->
+ <div class="redLine"></div>
+ <!-- 主体部分开始 -->
+   <table>
+     <tbody><tr>
+	   <!-- 左侧部分开始 -->
+		<td class="Ltd" valign="top" deep="3">
+		   <div class="position">
+		     您当前的位置是:<a href="<%=indexData.news_data.parentHref%>?page=1&act=group&parentId=<%=indexData.news_data.parent_ID%>">
+		     	<%=indexData.news_data.parentName%></a>>
+		     	<a href="<%=indexData.news_data.parentHref%>?page=1&act=group&categoryId=<%=indexData.news_data.category_ID%>"><%=indexData.news_data.category%></a>
+		   </div>
+		   <h4 style="font-weight:bold;line-height:30px;"><%=indexData.news_data.title%></h4>
+		   <div class="overline"></div>
+		   <div style="margin-top:15px">
+		     <img src="../web/img/author.png">
+			 <span class="text-danger newsspan" ><%=indexData.news_data.author%></span>
+			 <span class="text-danger newsspan"><%=indexData.news_data.publish_time%></span>
+		   </div>
+		   <br>
+		   <div class="contentBox" style="font-size: 14px;">
+		   	 <%- indexData.news_data.content%>
+		   </div>
+		   <p></p>
+		   <div class="tuijianBox" style="display: none">
+		   <h5>相关推荐</h5>
+		   <div  class="overline" style="background-color:#900;"></div>
+		   <ul class="list-unstyled">
+		   	<%for(var i=0;i< indexData.random_data.length;i++){%>
+		   	   <li><table class="table"><tbody><tr>
+		   	   		<td class="newsimage" style="padding-left:0px;width:20%;"><a>
+		   	   			<img src="/upload/<%=indexData.random_data[i].pic_url%>" class="img-thumbnail">
+		   	   		</a></td>
+		   	   		<td style="padding-right:0px">
+				    <h5><a href="/www.infochina.net/news?categoryId=<%=indexData.random_data[i].category_ID%>&id=<%=indexData.random_data[i].ID%>">
+				    	<%=indexData.random_data[i].title%>				    		
+				    </a></h5>
+				  <p class="newp"><a href="/www.infochina.net/news?categoryId=<%=indexData.random_data[i].category_ID%>&id=<%=indexData.random_data[i].ID%>">
+				  	<%- indexData.random_data[i].shortContent%></a></p>
+				</td>	
+		   	   	</tr></tbody></table></li>
+		   	<%}%>
+		   </ul>
+           </div>
+		  
+		</td>
+		<!-- 左侧部分结束 -->
+		<!-- 右侧部分开始 -->
+         <%include components/right.html%>
+        <!--右侧部分结束  -->
+	</tr></tbody>
+   </table>
+ <!-- 主体部分结束 -->
+ <!-- 底部开始 -->
+     <% include components/footer.html%>
+ <!-- 底部结束 -->
+ 
+<script>
+	//window.indexData= <%- JSON.stringify(indexData) %>;
+  $(".cul").mouseleave(function(){
+    $(this).parent().children("a").removeClass("current");
+	$(".pul>li").eq(7).children("a").addClass("current");
+ })
+  
+if($(".position a").eq(0).html().trim()=="智慧资讯"){
+	console.log(1)
+	$(".tuijianBox").show();
+}
+</script>
+</body>
+</html>

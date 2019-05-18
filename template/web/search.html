@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界网</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../web/css/global.css">
+	<link rel="stylesheet" href="../web/css/1.css">
+	<link rel="stylesheet" href="../web/css/5.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../web/js/default.js"></script>
+	<script src="../web/js/search.js"></script>
+	<link href="../web/img/logo.ico" rel="shortcut icon"> 
+ <style>
+body
+{
+	margin-top:20px;
+}
+ </style>
+</head>
+<body>
+<!-- 欢迎开始 -->
+    <% include components/nav.html%>
+ <!-- 导航栏结束 -->
+ <div class="redLine"></div>
+ <!-- 主体部分开始 -->
+   <table>
+     <tbody><tr>
+	   <!-- 左侧部分开始 -->
+		<td class="Ltd" valign="top">
+		   <div class="new" style="margin-top:5px">搜索结果</div>
+		   <div class="redLine2"></div>
+		   <div style="padding:15px;padding-top:50px;" deep="4">
+		   	 <%if(indexData.searchData.length==0){%>
+		   	      <h4>未找到相关信息</h4>
+		   	 <%}%>
+		      <%for(var i=0;i< indexData.searchData.length;i++){%>
+		        <div>
+		        	<a href="/www.infochina.net/news?categoryId=<%=indexData.searchData[i].category_ID%>&id=<%=indexData.searchData[i].ID%>"><h5 class="title">
+		        		<%=indexData.searchData[i].title%></h5></a>
+		        	<a class="shortContent" href="/www.infochina.net/news?categoryId=<%=indexData.searchData[i].category_ID%>&id=<%=indexData.searchData[i].ID%>">
+		        		<p><%=indexData.searchData[i].shortContent%></p></a>
+		        </div>
+		      <%}%>
+		   </div>
+		</td>
+		<!-- 左侧部分结束 -->
+		<!-- 右侧部分开始 -->
+           <% include components/right.html%>
+        <!--右侧部分结束  -->
+	</tr></tbody>
+   </table>
+ <!-- 主体部分结束 -->
+ <!-- 底部开始 -->
+      <% include components/footer.html%>
+ <!-- 底部结束 -->
+ 
+<script>
+	window.indexData= <%- JSON.stringify(indexData) %>;
+	console.log($(".title").eq(2).html())
+	console.log($(".title").length)
+	for(var i=0;i<$(".title").length;i++){
+		for(var j=0;j<indexData.keyword.length;j++){
+			$(".title").eq(i).html($(".title").eq(i).html().replace(indexData.keyword[j],'<span style="color:red">'+indexData.keyword[j]+'</span>'))
+		}
+	}
+</script>
+</body>
+</html>

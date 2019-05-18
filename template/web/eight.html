@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界网</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../web/css/global.css">
+	<link rel="stylesheet" href="../web/css/1.css">
+	<link rel="stylesheet" href="../web/css/5.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="../web/js/default.js"></script>
+	<script src="../web/js/search.js"></script>
+	<link href="../web/img/logo.ico" rel="shortcut icon">
+ <style>
+ .zhaopinp
+ {
+	font-size:16px;
+	text-align:justify;
+	color:#333;
+	text-indent:0em;
+ }
+ </style>
+</head>
+<body>
+<!-- 欢迎开始 -->
+    <% include components/nav.html%>
+ <!-- 导航栏结束 -->
+ <div class="redLine"></div>
+ <!-- 主体部分开始 -->
+   <table>
+     <tbody><tr>
+	   <!-- 左侧部分开始 -->
+		<td class="Ltd" valign="top">
+		   <div class="new" style="margin-top:5px">岗位需求</div>
+		   <div class="redLine2"></div>
+		   <div style="padding:15px;padding-top:50px;" deep="4">
+		   	  <%for(var i=0;i< indexData.rczp_data.length-1;i++){%>
+		   	     <h4 style="color:#600;font-weight:bold"><%=indexData.rczp_data[i].title%></h4>
+		   	     <p>
+		   	     	<%-indexData.rczp_data[i].content%>
+		   	     </p>
+		   	  <%}%>
+		   </div>
+		   <div class="new" style="margin-top:5px"><%=indexData.rczp_data[indexData.rczp_data.length-1].title%></div>
+		   <div class="redLine2"></div>
+		   <div style="padding:15px;padding-top:75px;">
+		     <p class="zhaopinp">
+			    <%-indexData.rczp_data[indexData.rczp_data.length-1].content%>
+			 </p>
+		   </div>
+		</td>
+		<!-- 左侧部分结束 -->
+		<!-- 右侧部分开始 -->
+          <% include components/right.html%>	
+        <!--右侧部分结束  -->
+	</tr></tbody>
+   </table>
+ <!-- 主体部分结束 -->
+ <!-- 底部开始 -->
+     <% include components/footer.html%>
+ <!-- 底部结束 -->
+ 
+<script>
+  $(".cul").mouseleave(function(){
+    $(this).parent().children("a").removeClass("current");
+	$(".pul>li").eq(7).children("a").addClass("current");
+ })
+
+ $(".pul>li>a").removeClass("current")
+ $(".pul>li:eq(7) a").addClass("current")
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.mybreadcrumb
+{
+	font-size:16px;
+	margin-bottom:5px;
+	margin-top:5px;
+}
+.mybreadcrumb a:hover
+{
+	text-decoration:none;
+	cursor:pointer;
+	color:#a94442;
+}
+.currentbreada
+{
+	color:#a94442;
+	font-weight:bold;
+}
+.Rtd
+{
+	width:292px;
+	padding-left:15px;
+	padding-right:15px;
+}
+.newsimage{width:27%;}
+.mypage_list
+{
+	float:right;
+	padding:10px;
+}
+.mypage_list a:hover{cursor:pointer;}

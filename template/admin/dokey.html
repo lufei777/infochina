@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界-后台管理</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="../css/houtai.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+	<script src="../js/bootstrap/bootstrap-datetimepicker.fr.js"></script>
+	<script src="../js/dokey.js"></script>
+	<script src="../js/isChecked.js"></script>
+	<script src="../js/pageManage.js"></script>
+	<script src="../js/recycleManage.js"></script>
+	<style>
+		.table>tbody>tr>th {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<% include components/head.html %>
+    <div class="main">
+    	<% include components/left.html %>
+	    <div class="right">
+	    	<a class="btn btn-info addparent addkey" data-toggle="modal" data-target="#addKeyModal">添加关键词</a>
+	    	<a href="#" class="btn btn-danger mulDelkey" style="float: right;margin: 5px 5px">批量删除</a>
+	    	<table class="table table-bordered" style="clear:both">
+	    		<thead>
+	    			<th><input type="checkbox"></th>
+	    			<th>ID</th>
+	    			<th>关键词</th>
+	    			<th>分词结果</th>
+	    			<th>操作</th>
+	    		</thead>
+	    			<%if(data.items.length==0){%>
+	    		    <tbody><tr><th colspan="7"><h4 style="text-align: center">暂无数据...</h4></th></tr></tbody>
+	    		    <%}else{%>
+		    		<tbody>
+		    		  <%for(var i=0;i< data.items.length;i++){%>
+		    		     <tr>
+		    		     	<th><input type="checkbox" id="<%=data.items[i].ID%>"></th>
+		    		     	<th><%=data.items[i].ID%></th>
+		    		     	<th><%=data.items[i].parent_key%></th>
+		    		     	<th><%=data.items[i].child_key%></th>
+		    		     	<th>
+		    		     		<a class="modkey" data-toggle="modal" data-target="#addKeyModal" id="<%=data.items[i].ID%>">修改</a>
+		    		     		<a class="delkey" id="<%=data.items[i].ID%>">删除</a>
+		    		     	</th>
+		    		     </tr>
+		    		  <%}%>
+		    		</tbody>
+	    		<%}%>
+	    	</table>
+	    	  <nav aria-label="Page navigation">
+			  <ul class="pagination" style="float: right;margin:20px 20px;">
+			  	<li><a class="firstPage">首页</a></li>
+			    <li id="lastgroup">
+			      <a aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			     <%for(var i=0;i< data.pageArr.length;i++){%>
+			       <li id="<%=data.pageArr[i]%>" class="clickpage"><a class="pagea current<%=i%>"><%=data.pageArr[i]%></a></li>
+			     <%}%> 
+			    <li id="nextgroup">
+			      <a aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			    <li><a class="lastPage" id="<%=data.totalPages%>">末页</a></li>
+			  </ul>
+            </nav>
+             <p class="totalpage">第<span>
+             	<%if(data.totalPages==0){%>
+             	      0 /
+             	<%}else{%>
+             	   <%=data.currentPage%> /
+             	<%}%><i><%=data.totalPages%></i></span>页</p>
+            <p  class="totalcount">共<span><%=data.totalCount%></span>条记录</p>
+        </div>
+    </div>
+
+     <!--增加栏目模态框-->
+    <div class="addparent-modal-panel">
+    	<div class="modal fade keyModal" id="addKeyModal" role="dialog" aria-labelledby="columnLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="columnLabel">添加关键词</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+							     <label for="key-name" class="col-sm-3 control-label"><i style="color:red">*</i>关键词：</label>
+							     <div class="col-sm-8">
+							       <input type="text" class="form-control" id="key-name">
+							     </div>
+							</div>
+							<div class="form-group addchildformgroup">
+							     <label for="childkey-name" class="col-sm-3 control-label"><i style="color:red">*</i>分词结果：</label>
+							     <div class="col-sm-8">
+							       <input type="text" class="form-control" id="childkey-name">
+							       (空格分割)
+							     </div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group btnbox">
+					   	    <button type="submit" class="btn btn-primary sure-addkey" style="margin-right:20px">确定</button>
+					      	<button type="button" class="btn btn-default closebtn" data-dismiss="modal">关闭</button>  
+					    </div>
+					</div>
+						   
+				</div>
+			</div>
+        </div>
+    </div>
+</body>
+<script>
+	$(".left li").eq(3).addClass("active")
+</script>
+</html>

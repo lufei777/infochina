@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>中国信息界-后台管理</title>
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="../css/bootstrap/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="../css/houtai.css">
+	<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+	<script src="../js/bootstrap/bootstrap-datetimepicker.fr.js"></script>
+	<script src="../js/isChecked.js"></script>
+	<script src="../js/pageManage.js"></script>
+	<script src="../js/recycleManage.js"></script>
+	<style>
+		.table>tbody>tr>th {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<% include components/head.html %>
+    <div class="main">
+    	<% include components/left.html %>
+	    <div class="right">
+	    	<a href="#" class="btn btn-danger mulDelCoop" style="margin:10 5px">批量删除</a>
+	    	<a href="#" class="btn btn-info mulRestore" style="margin:10 5px">批量还原</a>
+	    	<label class="radio-inline">
+			 <input type="radio" id="oncategory" name="inlineRadioOptions">按类别
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" id="ontitle" name="inlineRadioOptions">按名称
+			</label>
+			<label class="radio-inline">
+			  <input type="radio" id="ontime" name="inlineRadioOptions">按时间
+			</label>
+	    	<div class="form-group categorydiv" style="margin-top:10px">
+	    		<span class="searchSpan">类别:</span>
+		 		<div class="col-sm-3">
+		 		 	<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="category" data-toggle="dropdown" >
+					    首页
+					  </button>
+	                  <ul class="dropdown-menu" aria-labelledby="category">
+	                  	<%for(var i=0;i< listData.length;i++){%>
+		 					<li>
+		 						<a id="<%=listData[i].classId%>-0-<%=listData[i].ID%>"><%=listData[i].name%></a>
+		 						<ul>  
+		 							<%for(var j=0;j< listData[i].child_column.length;j++){%>
+                                      <li><a id="<%=listData[i].classId%>-<%=listData[i].ID%>-<%=listData[i].child_column[j].ID%>" style="margin-left: 40px;"><%=listData[i].child_column[j].name%></a></li>
+		 							<%}%>
+		 						</ul>
+		 					</li>
+				 		<%}%>
+			 		  </ul>
+				    </div>
+			    </div>
+			   <a class="btn btn-info searchBtn">搜索</a>
+			</div>
+			<div class="form-group titlediv searchOptionHide" style="margin-top:10px">
+		       <span class="searchSpan">标题:</span>
+			   <div class="col-sm-3">
+			     <input type="text" class="form-control" id="searchArt" placeholder="请输入标题">
+			   </div>
+			   <a class="btn btn-info searchBtn">搜索</a>
+			</div>
+			<div class="form-group timediv searchOptionHide" style="margin-top:10px">
+			 	<span class="searchSpan">时间:</span>
+			 	<div class="col-sm-3">
+			     <input type="text" class="form-control" id="starttime"> 
+			    </div>
+			    <span style="float: left;margin-top: 5px;">-</span>
+			 	<div class="col-sm-3">
+			     <input type="text" class="form-control" id="endtime"> 
+			    </div>
+			    <a class="btn btn-info searchBtn">搜索</a>
+		    </div>
+	    	<table class="table table-bordered" style="clear:both">
+	    		<thead>
+	    			<th><input type="checkbox"></th>
+	    			<th>ID</th>
+	    			<th>标题</th>
+	    			<th>类目</th>
+	    			<th>操作</th>
+	    		</thead>
+	    			<%if(data.items.length==0){%>
+	    		    <tbody><tr><th colspan="7"><h4 style="text-align: center">暂无数据...</h4></th></tr></tbody>
+	    		    <%}else{%>
+		    		<tbody>
+		    		  <%for(var i=0;i< data.items.length;i++){%>
+		    		     <tr>
+		    		     	<th><input type="checkbox" id="<%=data.items[i].classId%>-<%=data.items[i].ID%>"></th>
+		    		     	<th><%=data.items[i].ID%></th>
+		    		     	<th><a href="addArticle?act=recycle&class=<%=data.items[i].classId%>&id=<%=data.items[i].ID%>"><%=data.items[i].title%><%=data.items[i].name%></a></th>
+		    		     	<th><%=data.items[i].category%></th>
+		    		     	<th>
+		    		     		<a class="restore" id="<%=data.items[i].classId%>-<%=data.items[i].ID%>">还原</a>
+		    		     		<a class="delrecycle" id="<%=data.items[i].classId%>-<%=data.items[i].ID%>">删除</a>
+		    		     	</th>
+		    		     </tr>
+		    		  <%}%>
+		    		</tbody>
+	    		<%}%>
+	    	</table>
+	    	  <nav aria-label="Page navigation">
+			  <ul class="pagination" style="float: right;margin:20px 20px;">
+			  	<li><a class="firstPage">首页</a></li>
+			    <li id="lastgroup">
+			      <a aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			     <%for(var i=0;i< data.pageArr.length;i++){%>
+			       <li id="<%=data.pageArr[i]%>" class="clickpage"><a class="pagea current<%=i%>"><%=data.pageArr[i]%></a></li>
+			     <%}%> 
+			    <li id="nextgroup">
+			      <a aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			    <li><a class="lastPage" id="<%=data.totalPages%>">末页</a></li>
+			  </ul>
+            </nav>
+             <p class="totalpage">第<span>
+             	<%if(data.totalPages==0){%>
+             	      0 /
+             	<%}else{%>
+             	   <%=data.currentPage%> /
+             	<%}%><i><%=data.totalPages%></i></span>页</p>
+            <p  class="totalcount">共<span><%=data.totalCount%></span>条记录</p>
+        </div>
+    </div>
+</body>
+<script>
+	$(".left li").eq(2).addClass("active")
+</script>
+</html>
